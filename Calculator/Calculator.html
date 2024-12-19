@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="calculator css.css">
+<title>Calculator</title>
+<script>
+
+var firstNumber = '';
+var secondNumber = '';
+var operation = '';
+
+
+function NumberClicked(number){
+    if(operation == ''){
+        firstNumber += number;
+    } else{
+        secondNumber += number;
+    }
+    document.getElementById('screen').value = document.getElementById('screen').value + number;
+}
+
+function OperationClicked(op){
+    if(firstNumber !== ''){
+        if(op === 'C'){
+            firstNumber = '';
+            secondNumber = '';
+            operation = '';
+            document.getElementById('screen').value = '';
+        }else if(op === '+/-'){
+            if(operation == '') {
+                var convertedNumber = Number(firstNumber) * -1;
+                firstNumber = convertedNumber;
+                
+                document.getElementById('screen').value = convertedNumber;
+            }
+        } else{
+            if(operation === '' && op == '%'){
+                operation = op;
+                Calculate();
+            }
+            else if(operation === '' && op != '='){
+                operation = op;
+                document.getElementById('screen').value += op;
+            } else{
+                if(secondNumber != ''){
+                    Calculate();
+                } 
+            }
+        }
+
+    } 
+}
+
+function Calculate(){
+    var result;
+    if(operation == '+'){
+        result = Number(firstNumber) + Number(secondNumber);
+        secondNumber = '';
+        operation = '';
+        firstNumber = result;
+        document.getElementById("screen").value = result;
+    } else if(operation == 'X'){
+        result = Number(firstNumber) * Number(secondNumber);
+        secondNumber = '';
+        operation = '';
+        firstNumber = result;
+        document.getElementById("screen").value = result;
+    } else if(operation == '/'){
+        result = Number(firstNumber) / Number(secondNumber);
+        secondNumber = '';
+        operation = '';
+        firstNumber = result;
+        document.getElementById("screen").value = result;
+    } else if(operation == '%'){
+        result = (Number(firstNumber) / 100);
+        secondNumber = '';
+        operation = '';
+        firstNumber = result;
+        document.getElementById("screen").value = result;
+    }
+
+}
+
+</script>
+    </head>
+    <body class="bg-dark text-light">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="bg-light bg-light p-3 rounded shadow">
+        <div class="screen mb-3">
+            <textarea id="screen" class="form-control text-right"></textarea>
+            <div class="container">
+                <div class="row">
+                    <button class="col btn btn-light" onclick="OperationClicked('C')">C</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('()')">()</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('%')">%</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('/')">/</button>
+                </div>
+                <div class="row">
+                    <button class="col btn btn-light" onclick="NumberClicked('7')">7</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('8')">8</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('9')">9</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('x')">X</button>
+                </div>
+                <div class="row">
+                    <button class="col btn btn-light" onclick="NumberClicked('4')">4</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('5')">5</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('6')">6</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('-')">-</button>
+                </div>
+                <div class="row">
+                    <button class="col btn btn-light" onclick="NumberClicked('1')">1</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('2')">2</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('3')">3</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('+')">+</button>
+                </div>
+                <div class="row">
+                    <button class="col btn btn-light" onclick="OperationClicked('+/-')">+/-</button>
+                    <button class="col btn btn-light" onclick="NumberClicked('0')">0</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('.')">.</button>
+                    <button class="col btn btn-light" onclick="OperationClicked('=')">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+</html>

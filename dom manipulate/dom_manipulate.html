@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulate Examples</title>
+    <script>src="https://code.jquery.com/jquery-latest.min.js%22"</script>
+    <script>
+        function changetext() {
+            document.getElementById("heading").innerHTML = "Hello JQuery";
+            $("#heading").innerHTML = "Hello JQuery";
+        }
+
+        function addItem() {
+            var newItem = document.createElement("li");
+            var itemCount = document.getElementById("list").getElementsByTagName("li").length;
+            itemCount++;
+            newItem.innerHTML = "Item " + itemCount;
+            document.getElementById("list").appendChild(newItem);
+        }
+
+        function changeColor() {
+            // document.getElementById("list").style.backgroundColor = "lightblue";
+            // $("ul").style.css("background-color", "0,0,0")
+            // $("ul").hide.();
+            $("#list").css("background-color", "aquamarine")
+        }
+        function showList(){
+            $('#list').show();
+        }
+        function hideList(){
+            $('#list').hide();
+        }
+
+
+    </script>
+</head>
+<body>
+    <h1 id="heading">Hello Javascript</h1>
+    <button onclick="changetext()">Change Text</button>
+    <button onclick="addItem()">Add Item</button>
+    <button onclick="changeColor()">Change Color</button>
+    <button onclick="showList()">showlist</button>
+    <button onclick="hideList()">hidelist</button>
+    <ul id="list" style="background-color: aquamarine;">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+</body>
+</html>
